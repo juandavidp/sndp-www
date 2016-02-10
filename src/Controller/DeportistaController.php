@@ -54,7 +54,7 @@ class DeportistaController extends AppController
                 return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('Este deportista no pudo ser registrado.'));
-              
+              var_export($deporstista->errors());
             }
         }
         $this->set(compact('deportista'));
