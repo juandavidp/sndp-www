@@ -48,15 +48,24 @@ class DeportistaController extends AppController
         $deportista = $this->Deportista->newEntity();
         if ($this->request->is('post')) {
             $deportista = $this->Deportista->patchEntity($deportista, $this->request->data);
+            $deportista->entidad_idEntidad=$_SESSION['idEntidad'];
             if ($this->Deportista->save($deportista)) {
                 $this->Flash->success(__('Este deportista a sido guardado.'));
                 return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('Este deportista no pudo ser registrado.'));
+              
             }
         }
         $this->set(compact('deportista'));
         $this->set('_serialize', ['deportista']);
+    
+        
+         $deporte=$this->loadModel('deporte_actividad');
+        //paso la consulta a un array
+        $datadeporte = $deporte->find('all')->toArray();
+        $this->set('deportes',$datadeporte);
+        
     }
 
     /**
@@ -73,6 +82,7 @@ class DeportistaController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $deportista = $this->Deportista->patchEntity($deportista, $this->request->data);
+            
             if ($this->Deportista->save($deportista)) {
                 $this->Flash->success(__('Este deportista a sido guardado.'));
                 return $this->redirect(['action' => 'index']);

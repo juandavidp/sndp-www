@@ -17,8 +17,19 @@
             echo $this->Form->input('ranking_nacional');
             echo $this->Form->input('ranking_internacional');
             echo $this->Form->input('tipo_asociacion');
-            echo $this->Form->input('entidad_idEntidad');
-            echo $this->Form->input('deporte_iddeporte');
+            
+            <div class="form-group">
+    <label class="col-md-4 control-label" for="selectbasic">Deporte</label>
+    <div class="col-md-4">
+    <select id="deportes" name="deportes[]" class="form-control" multiple>
+
+        <?php foreach ($deportes as $deporte): ?>
+           <option value="<?=  $deporte->iddeporte ?>"><?=  $deporte->nombre ?></option>
+        <?php endforeach; ?>
+      </select>
+    </div>
+    </div>
+            
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
