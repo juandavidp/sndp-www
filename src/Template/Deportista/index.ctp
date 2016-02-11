@@ -24,10 +24,10 @@
                       <th>FECHA NACIMIENTO</th>
                       <th>LUGAR NACIMIENTO</th>
                       <th>CATEGORIA</th>
+                      <th>ASOCIACIÓN</th>
                       <th>RANKING NACIONAL </th>
                       <th>RANKING INTERNACIONAL</th>
-                     
-                      <th>ACCION</th>
+                      <th>ACCIÓN</th>
                     </tr>
             <?php foreach ($deportista as $deportista): ?>
             <tr>
@@ -37,6 +37,7 @@
                 <td><?= h($deportista->fecha_nacimiento) ?></td>
                 <td><?= h($deportista->lugar_nacimiento) ?></td>
                 <td><?= h($deportista->categoria) ?></td>
+                <td><?= h($deportista->tipo_asociacion) ?></td>
                 <td><?= $this->Number->format($deportista->ranking_nacional) ?></td>
                 <td><?= $this->Number->format($deportista->ranking_internacional) ?></td>
                 <td class="actions">
@@ -49,8 +50,8 @@
         </tbody>
     </table>
     </div>
-    <div class="box-footer clearfix">
-        <ul class="agination pagination-sm no-margin pull-right">
+    <div class="paginator">
+        <ul class="pagination">
             <?= $this->Paginator->prev('< ' . __('previous')) ?>
             <?= $this->Paginator->numbers() ?>
             <?= $this->Paginator->next(__('next') . ' >') ?>

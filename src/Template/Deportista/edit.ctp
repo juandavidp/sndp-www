@@ -1,3 +1,15 @@
+ <div class="box box-primary">
+    <div class="box-header with-border">
+    <h3 class="box-title">Editar deportista</h3>
+  </div> 
+
+
+
+
+
+
+
+
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>

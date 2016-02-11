@@ -1,4 +1,4 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
+<nav class="large-1 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Edit Deportista'), ['action' => 'edit', $deportista->iddeportista]) ?> </li>
@@ -9,13 +9,13 @@
 </nav>
 <div class="deportista view large-9 medium-8 columns content">
     <h3><?= h($deportista->iddeportista) ?></h3>
-    <table class="vertical-table">
+    <table class="table table-striped">
         <tr>
             <th><?= __('Nombre') ?></th>
             <td><?= h($deportista->nombre) ?></td>
         </tr>
         <tr>
-            <th><?= __('Docidentidad') ?></th>
+            <th><?= __('Documento de identidad') ?></th>
             <td><?= h($deportista->docidentidad) ?></td>
         </tr>
         <tr>
@@ -30,10 +30,7 @@
             <th><?= __('Tipo Asociacion') ?></th>
             <td><?= h($deportista->tipo_asociacion) ?></td>
         </tr>
-        <tr>
-            <th><?= __('Iddeportista') ?></th>
-            <td><?= $this->Number->format($deportista->iddeportista) ?></td>
-        </tr>
+    
         <tr>
             <th><?= __('Ranking Nacional') ?></th>
             <td><?= $this->Number->format($deportista->ranking_nacional) ?></td>
@@ -42,12 +39,9 @@
             <th><?= __('Ranking Internacional') ?></th>
             <td><?= $this->Number->format($deportista->ranking_internacional) ?></td>
         </tr>
+        
         <tr>
-            <th><?= __('Entidad IdEntidad') ?></th>
-            <td><?= $this->Number->format($deportista->entidad_idEntidad) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Deporte Iddeporte') ?></th>
+            <th><?= __('Deporte que practica') ?></th>
             <td><?= $this->Number->format($deportista->deporte_iddeporte) ?></td>
         </tr>
         <tr>
