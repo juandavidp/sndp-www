@@ -44,6 +44,7 @@
                     <?= $this->Html->link(__('View'), ['action' => 'view', $deportista->iddeportista]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $deportista->iddeportista]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $deportista->iddeportista], ['confirm' => __('Are you sure you want to delete # {0}?', $deportista->iddeportista)]) ?>
+                    <a href=<?='registroDeportivo/add/'.$deportista->iddeportista?>>Crear registro</a>
                 </td>
             </tr>
             <?php endforeach; ?>

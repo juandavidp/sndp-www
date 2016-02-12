@@ -7,8 +7,10 @@
   <form id="miform1" method="post" accept-charset="utf-8" action="/deportista/add" >
     <div class="box-body">
       <div class="form-group">
-        <label for="exampleInputEmail1">Nombre</label>
+        <label  class="col-md-4 control-label" for="exampleInputEmail1">Nombre</label>
+        <div class="col-md-4">
         <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Introduzca el nombre">
+         <div class="col-md-4">
       </div>
       
       <div class="form-group">

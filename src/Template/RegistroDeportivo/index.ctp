@@ -4,26 +4,38 @@
         <li><?= $this->Html->link(__('New Registro Deportivo'), ['action' => 'add']) ?></li>
     </ul>
 </nav>
-<div class="registroDeportivo index large-9 medium-8 columns content">
-    <h3><?= __('Registro Deportivo') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th><?= $this->Paginator->sort('idregistro_deportivo') ?></th>
-                <th><?= $this->Paginator->sort('reconocimiento') ?></th>
-                <th><?= $this->Paginator->sort('marca') ?></th>
-                <th><?= $this->Paginator->sort('deportista_iddeportista') ?></th>
-                <th><?= $this->Paginator->sort('info') ?></th>
-                <th class="actions"><?= __('Actions') ?></th>
-            </tr>
-        </thead>
-        <tbody>
+
+
+   
+   
+      <div class="box box-primary">
+                <div class="box-header">
+                  <h3 class="box-title">Deportistas</h3>
+
+     </div>
+     
+      <div class="box-body table-responsive no-padding">
+
+
+                  <table class="table table-hover" >
+
+        
+        <tbody><tr>
+            
+                      <th>ID REGISTRO</th>
+                      <th>NOMBRE DEPORTISTA</th>
+                      <th>RECONOCIMIENTO</th>
+                      <th>MARCA</th>
+                      <th>INFO</th>
+                     
+                    </tr>
+     
             <?php foreach ($registroDeportivo as $registroDeportivo): ?>
             <tr>
                 <td><?= $this->Number->format($registroDeportivo->idregistro_deportivo) ?></td>
+                <td><?= $this->Number->format($registroDeportivo->deportista_iddeportista) ?></td>
                 <td><?= h($registroDeportivo->reconocimiento) ?></td>
                 <td><?= $this->Number->format($registroDeportivo->marca) ?></td>
-                <td><?= $this->Number->format($registroDeportivo->deportista_iddeportista) ?></td>
                 <td><?= h($registroDeportivo->info) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $registroDeportivo->idregistro_deportivo]) ?>
@@ -43,3 +55,4 @@
         <p><?= $this->Paginator->counter() ?></p>
     </div>
 </div>
+ </div>

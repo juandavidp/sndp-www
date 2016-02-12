@@ -43,7 +43,7 @@ class RegistroDeportivoController extends AppController
      *
      * @return void Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($id = null)
     {
         $registroDeportivo = $this->RegistroDeportivo->newEntity();
         if ($this->request->is('post')) {
@@ -57,6 +57,13 @@ class RegistroDeportivoController extends AppController
         }
         $this->set(compact('registroDeportivo'));
         $this->set('_serialize', ['registroDeportivo']);
+        
+        
+        $deportista = $this->loadModel('deportista');
+        //paso la consulta a un array
+        $datadeportista = $deportista->find('all')->toArray();
+        $this->set('deportista',$datadeportista);
+        $this->set('iddeportista',$id);
     }
 
     /**
@@ -82,6 +89,11 @@ class RegistroDeportivoController extends AppController
         }
         $this->set(compact('registroDeportivo'));
         $this->set('_serialize', ['registroDeportivo']);
+        
+        $deportista = $this->loadModel('deportista');
+        //paso la consulta a un array
+        $datadeportista = $deportista->find('all')->toArray();
+        $this->set('deportista',$datadeportista);
     }
 
     /**

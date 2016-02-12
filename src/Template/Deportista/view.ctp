@@ -44,9 +44,11 @@
             <th><?= __('Deporte que practica') ?></th>
             <td><?= $this->Number->format($deportista->deporte_iddeporte) ?></td>
         </tr>
-        <tr>
-            <th><?= __('Fecha Nacimiento') ?></th>
-            <td><?= h($deportista->fecha_nacimiento) ?></tr>
-        </tr>
-    </table>
-</div>
+        
+          
+         <tr>
+             <th><?= __('Fecha Nacimiento') ?></th>
+              <td><?= h($deportista->fecha_nacimiento) ?></tr>
+         </tr>
+     </table>
+ </div>
