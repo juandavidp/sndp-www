@@ -2,8 +2,9 @@
   <div class="box-header with-border">
     <h3 class="box-title">Crear Deportista</h3>
   </div> 
+   </div>
   
-  <form id="miform" method="post" accept-charset="utf-8" action="/deportista/add" >
+  <form id="miform1" method="post" accept-charset="utf-8" action="/deportista/add" >
     <div class="box-body">
       <div class="form-group">
         <label for="exampleInputEmail1">Nombre</label>
@@ -56,7 +57,7 @@
       </div>
       
       <div class="form-group">
-    <label class="col-md-4 control-label" for="selectbasic">Deporte</label>
+    <label class="col-md-4 control-label" for="selectbasic">Deporte que practica</label>
     <select id="deporte_iddeporte" name="deporte_iddeporte" class="form-control" multiple>
 
         <?php foreach ($deportes as $deporte): ?>

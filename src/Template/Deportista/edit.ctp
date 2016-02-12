@@ -2,29 +2,31 @@
     <div class="box-header with-border">
     <h3 class="box-title">Editar deportista</h3>
   </div> 
+  </div> 
 
-    <form id="miform" method="post" accept-charset="utf-8" action=<?php "/deportista/edit/".$deportista->iddeportista ?> >
+    <form id="miform2" method="post" accept-charset="utf-8" action=<?php "/deportista/edit/".$deportista->iddeportista ?> >
+ <div class="box-body"> 
+
   
-  <fieldset>
-  
-    <div class="box-body">
+   
       <div class="form-group">
-        <label for="exampleInputEmail1">Nombre</label>
-        <input type="text" name="nombre" class="form-control input-md" id="nombre" placeholder="Introduzca el nombre" value="<?= $deportista->nombre ?>" required>
+        <label for="text">Nombre</label>
+        <input id="nombre" name="nombre" type="text" placeholder="Introduzca el nombre" class="form-control"  value="<?= $deportista->nombre ?>" required>
+      </div>
+    
+      
+      <div class="form-group">
+        <label for="text">Documento de identidad</label>
+        <input id="docidentidad" name="docidentidad" type="text"  placeholder="Introduzca su cedula" class="form-control"   value="<?= $deportista->docidentidad ?>" required>
+      </div>
+      
+      
+      <div class="form-group">
+        <label for="">Lugar de nacimiento</label>
+        <input id="lugar_nacimiento" name="lugar_nacimiento" type="text"  placeholder="Introduzca su lugar de nacimiento" class="form-control"   value="<?= $deportista->lugar_nacimiento ?>" required>
       </div>
       
       <div class="form-group">
-        <label for="exampleInputEmail1">Documento de identidad</label>
-        <input type="text" name="docidentidad" class="form-control" id="docidentidad" placeholder="Introduzca su cedula" value="<?= $deportista->docidentidad ?>" required>
-      </div>
-      
-      
-      <div class="form-group">
-        <label for="exampleInputEmail1">Lugar de nacimiento</label>
-        <input type="text" name="lugar_nacimiento" class="form-control" id="lugar_nacimiento" placeholder="Introduzca su lugar de nacimiento" value="<?= $deportista->lugar_nacimiento ?>" required>
-      </div>
-     
-     <div class="form-group">
         <label for="selectbasic">Categoria deportista</label>
         <select id="categoria" name="categoria" class="form-control">
           <option value="juvenil">Juvenil</option>
@@ -42,20 +44,22 @@
         </select>
       </div>
       
+     
+      
        <div class="form-group">
         <label for="exampleInputEmail1">Ranking nacional</label>
-        <input type="text" name="ranking_nacional" class="form-control" id="ranking_nacional" placeholder="Introduzca el ranking" value="<?= $deportista->ranking_nacional ?>" required>
+        <input id="ranking_nacional" name="ranking_nacional" type="text" placeholder="Introduzca el ranking" class="form-control"   value="<?= $deportista->ranking_nacional ?>" required>
       </div>
       
        <div class="form-group">
         <label for="exampleInputEmail1">Ranking internacional</label>
-        <input type="text" name="ranking_internacional" class="form-control" id="ranking_internacional" placeholder="Introduzca el ranking" value="<?= $deportista->ranking_internacional ?>" required>
+        <input id="ranking_internacional" name="ranking_internacional" type="text" placeholder="Introduzca el ranking" class="form-control"   value="<?= $deportista->ranking_internacional ?>" required>
       </div>
       
-      <div class="form-group">
+       <div class="form-group">
         <label for="selectbasic">Asociación deportista</label>
         <select id="tipo_asociacion" name="tipo_asociacion" class="form-control">
-          <option value="con pase">Con pase</option>
+          <option value="con-pase">Con pase</option>
           <option value="asocidado mensual">Asociado mensual</option>
           <option value="asocidado anual">Asociado anual</option>
            <?php
@@ -70,31 +74,25 @@
         </select>
       </div>
       
-      <div class="form-group">
-    <label class="col-md-4 control-label" for="selectbasic">Deporte</label>
-    <select id="deporte_iddeporte" name="deporte_iddeporte" class="form-control" multiple>
-
-        <?php foreach ($deportes as $deporte): ?>
-          <?php if ($deporte->iddeporte==$deportista->deporte_iddeporte){ ?>
-           <option value="<?=  $deporte->iddeporte ?> selected>"><?=  $deporte->nombre ?></option>
-           <?php } 
-           else {?><option value="<?=  $deporte->iddeporte ?>"><?=  $deporte->nombre ?></option>
-        <?php} endforeach; ?>
-      </select>
-    </div>
+       <div class="form-group">
+        <label for="selectbasic">Deporte que practica</label>
+        <select id="deporte_iddeporte" name="deporte_iddeporte" class="form-control">
+        
+           <?php foreach ($deportes as $deporte): ?>
+           <option value="<?=  $deporte->iddeporte ?>"><?=  $deporte->nombre ?></option>
+        <?php endforeach; ?>
+        </select>
+      </div>
       
-     <div class="form-group">
- <label class="col-md-4 control-label" for="button1id"></label>
- <div class="col-md-8">
-   <button id="button1id" name="button1id" class="btn btn-primary">Aceptar</button>
-   <button id="button2id" name="button2id" class="btn btn-danger">Cancelar</button>
+       
+      
+    <div class="form-group">
 
- </div>
-</div>
-  
-</fieldset>
-</form>
+        <input type="submit" value="Guardar">
+      </div>
+      
 
+ </div> 
 
 
 

@@ -92,6 +92,12 @@ class DeportistaController extends AppController
         }
         $this->set(compact('deportista'));
         $this->set('_serialize', ['deportista']);
+   
+        $deporte=$this->loadModel('deporte_actividad');
+        //paso la consulta a un array
+        $datadeporte = $deporte->find('all')->toArray();
+        $this->set('deportes',$datadeporte);
+   
     }
 
     /**
