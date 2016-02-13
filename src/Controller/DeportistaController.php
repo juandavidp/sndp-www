@@ -34,6 +34,16 @@ class DeportistaController extends AppController
         $deportista = $this->Deportista->get($id, [
             'contain' => []
         ]);
+        
+        $id_deportista = $deportista -> iddeportista;
+        
+         //obtengo los nombres y id de los diferentes deportes
+        $registro_deportivo=$this->loadModel('registroDeportivo');
+        $regisDeporte = $registro_deportivo->find('all')->where(['deportista_iddeportista' => $id_deportista])->toArray();
+        $this->set('registroDeportivo',$regisDeporte);
+        $this->set('_serialize', ['registroDeportivo']);
+        
+        
         $this->set('deportista', $deportista);
         $this->set('_serialize', ['deportista']);
     }

@@ -1,56 +1,77 @@
-<nav class="large-1 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Deportista'), ['action' => 'edit', $deportista->iddeportista]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Deportista'), ['action' => 'delete', $deportista->iddeportista], ['confirm' => __('Are you sure you want to delete # {0}?', $deportista->iddeportista)]) ?> </li>
-        <li><?= $this->Html->link(__('List Deportista'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Deportista'), ['action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="deportista view large-9 medium-8 columns content">
-    <h3><?= h($deportista->iddeportista) ?></h3>
-    <table class="table table-striped">
-        <tr>
-            <th><?= __('Nombre') ?></th>
-            <td><?= h($deportista->nombre) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Documento de identidad') ?></th>
-            <td><?= h($deportista->docidentidad) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Lugar Nacimiento') ?></th>
-            <td><?= h($deportista->lugar_nacimiento) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Categoria') ?></th>
-            <td><?= h($deportista->categoria) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Tipo Asociacion') ?></th>
-            <td><?= h($deportista->tipo_asociacion) ?></td>
-        </tr>
-    
-        <tr>
-            <th><?= __('Ranking Nacional') ?></th>
-            <td><?= $this->Number->format($deportista->ranking_nacional) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Ranking Internacional') ?></th>
-            <td><?= $this->Number->format($deportista->ranking_internacional) ?></td>
-        </tr>
+        <div class="text-center">
+              <h1><?= h($deportista->nombre) ?></h1>
+        </div>
         
-        <tr>
-            <th><?= __('Deporte que practica') ?></th>
-            <td><?= $this->Number->format($deportista->deporte_iddeporte) ?></td>
-        </tr>
+
         
-          
-         <tr>
-             <th><?= __('Fecha Nacimiento') ?></th>
-              <td><?= h($deportista->fecha_nacimiento) ?></tr>
-         </tr>
-     </table>
+         <div class="row">
+        
+         <div class="col-sm-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading text-center">
+                    <h3 class="panel-title">Informacion deportista</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover" >
+                            <tbody>
+                                <tr>
+                                  <th>Doc Id</th>
+                                  <th>Lugar Nacimiento</th>
+                                  <th>Fecha Nacimiento</th>
+                                  <th>Deporte</th>
+                                  <th>Categoria</th>
+                                  <th>TIpo de AsociaciOn</th>
+                                  <th>Ranking Nacional</th>
+                                  <th>Ranking Internacional</th>
+                                </tr>
+                                <tr>
+                                    <td><?= $this->Number->format($deportista->docidentidad) ?></td>
+                                    <td><?= h($deportista->lugar_nacimiento) ?></td>
+                                    <td><?= h($deportista->fecha_nacimiento) ?></td>
+                                    <td><?= h($deportista->deporte_iddeporte) ?></td>
+                                    <td><?= h($deportista->categoria) ?></td>
+                                    <td><?= h($deportista->tipo_asociacion) ?></td>
+                                    <td><?= $this->Number->format($deportista->ranking_nacional) ?></td>
+                                    <td><?= $this->Number->format($deportista->ranking_internacional) ?></td>
+                                </tr>
+                              
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
  </div>
+ 
+  
+  
+  
+           <div class="col-sm-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading text-center">
+                    <h3 class="panel-title">Registro DEportivo</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover" >
+                            <tbody>
+                                <tr>
+                                  <th>RECONOCIMIENTO</th>
+                                  <th>MARCA</th>
+                                  <th>INFO</th>
+                                </tr>
+                         
+                                <?php foreach ($registroDeportivo as $registroDeportivo): ?>
+                                <tr>
+                                    <td><?= h($registroDeportivo->reconocimiento) ?></td>
+                                    <td><?= $this->Number->format($registroDeportivo->marca) ?></td>
+                                    <td><?= h($registroDeportivo->info) ?></td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+  
+
 
 
