@@ -27,7 +27,8 @@
      </div>
     </div>
     
-    <input id="deportista_iddeportista" name="deportista_iddeportista"  type="hidden"><?= $registroDeportivo->iddeportista?>
+    <input id="deportista_iddeportista" name="deportista_iddeportista"  type="hidden" value="<?= $
+    iddeportista?>">
     
     <div class="form-group">
      <label class="col-md-4 control-label" for="textinput">Información</label>
