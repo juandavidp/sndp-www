@@ -132,9 +132,6 @@ metodo add registroDeportivo
 
 add campos deportes deportista
 
-<?php foreach ($deportes as $deporte): ?>
-           <option value="<?=  $deporte->iddeporte ?>"><?=  $deporte->nombre ?></option>
-        <?php endforeach; ?>
 
 
  

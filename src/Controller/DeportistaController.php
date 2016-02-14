@@ -121,14 +121,23 @@ class DeportistaController extends AppController
                 $this->Flash->error(__('Este deportista no pudo ser guardado.'));
             }
         }
-        $this->set(compact('deportista'));
-        $this->set('_serialize', ['deportista']);
+        
+        $buscardeporte = $deportista->deporte_iddeporte;
    
         $deporte=$this->loadModel('deporte_actividad');
+        
+        
+        $datosDeporte = $deporte->find('all')->where(['deporte_actividad.iddeporte' => $buscardeporte])->toArray();
+        $this->set('deporte_actividad',$datosDeporte);
+        $this->set('_serialize', ['deporte_actividad']);
         //paso la consulta a un array
         $datadeporte = $deporte->find('all')->toArray();
-        $this->set('deportes',$datadeporte);
+        $this->set('deporte_actividades',$datadeporte);
+        $this->set('_serialize', ['deporte_actividades']);
    
+   
+        $this->set(compact('deportista'));
+        $this->set('_serialize', ['deportista']);
     }
 
     /**

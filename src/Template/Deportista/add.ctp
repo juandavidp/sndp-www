@@ -24,9 +24,9 @@
       
     
       <div class="form-group">
-      <label class="col-md-4 control-label" for="textinput">Fecha de nacimiento</label>  
+      <label class="col-md-4 control-label" for="date">Fecha de nacimiento</label>  
        <div class="col-md-4">
-       <input type="date" name="fecha_nacimiento"  step="1" min="1950-01-01" max="2000-12-31"><br>
+       <input id="datepicker" type="datepicker" name="fecha"  class="form-control input-md" required>
        </div>
       </div>
       
@@ -104,3 +104,14 @@
   
   
 </div>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+
+<script>
+$(function() {
+  $("#datepicker").datepicker({ dateFormat: 'yy-mm-dd' })
+  $( "#datepicker" ).datepicker();
+});
+</script>

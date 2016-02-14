@@ -40,18 +40,13 @@
         <label class="col-md-4 control-label" for="selectbasic">Categoria deportista</label>
           <div class="col-md-4">
         <select id="categoria" name="categoria" class="form-control">
+            
+                <option value="<?= $deportista->deporte_iddeporte?>"><?=  $deportista->categoria?></option>
+            
           <option value="juvenil">Juvenil</option>
           <option value="junior">Junior</option>
           <option value="señior">Señior</option>
-           <?php
-              $opciones=["Juvenil","Junior","Señior"];
-              for ($i = 0; $i < 3; $i++) {
-                if($deportista->categoria==strtolower($opciones[$i]))
-               echo "<option value='".strtolower($opciones[$i])."'selected>$opciones[$i]</option>";
-              else
-              echo "<option value='".strtolower($opciones[$i])."'>$opciones[$i]</option>";
-             }
-            ?>
+          
         </select>
           </div>
       </div>
@@ -76,18 +71,11 @@
         <label class="col-md-4 control-label" for="selectbasic">Asociación deportista</label>
           <div class="col-md-4">
         <select id="tipo_asociacion" name="tipo_asociacion" class="form-control">
+    <option value="<?= $deportista->deporte_iddeporte?>"><?=  $deportista->tipo_asociacion?></option>
           <option value="con-pase">Con pase</option>
           <option value="asocidado mensual">Asociado mensual</option>
           <option value="asocidado anual">Asociado anual</option>
-           <?php
-              $opciones=["Con pase","Asociado mensual","Asociado anual"];
-              for ($i = 0; $i < 3; $i++) {
-                if($deportista->tipo_asociacion==strtolower($opciones[$i]))
-               echo "<option value='".strtolower($opciones[$i])."'selected>$opciones[$i]</option>";
-              else
-              echo "<option value='".strtolower($opciones[$i])."'>$opciones[$i]</option>";
-             }
-            ?>
+           
         </select>
       </div>
        </div>
@@ -97,9 +85,12 @@
           <div class="col-md-4">
         <select id="deporte_iddeporte" name="deporte_iddeporte" class="form-control">
         
-           <?php foreach ($deportes as $deporte): ?>
-           <option value="<?=  $deporte->iddeporte ?>"><?=  $deporte->nombre ?></option>
-        <?php endforeach; ?>
+           <?php foreach ($deporte_actividad as $deporte_actividads): ?>
+                <option value="<?= $deportista->deporte_iddeporte?>"><?=  $deporte_actividads->nombre?></option>
+            <?php endforeach; ?>
+                <?php foreach ($deporte_actividades as $deporte_actividades): ?>
+                <option value="<?= $deporte_actividades->iddeporte?>"><?=  $deporte_actividades->nombre?></option>
+            <?php endforeach; ?>
         </select>
       </div>
        </div>
