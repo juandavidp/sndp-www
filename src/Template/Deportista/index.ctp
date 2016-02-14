@@ -14,10 +14,10 @@
     <div class="box-body table-responsive no-padding">
 
 
-                  <table class="table table-hover" >
+                  <table class="table table-striped" >
 
         
-        <tbody><tr>
+        <tbody ><tr>
                       <th>ID</th>
                       <th>NOMBRE</th>
                       <th>CEDULA</th>

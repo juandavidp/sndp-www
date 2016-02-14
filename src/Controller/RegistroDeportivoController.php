@@ -34,6 +34,7 @@ class RegistroDeportivoController extends AppController
         $registroDeportivo = $this->RegistroDeportivo->get($id, [
             'contain' => []
         ]);
+        
         $this->set('registroDeportivo', $registroDeportivo);
         $this->set('_serialize', ['registroDeportivo']);
     }
@@ -58,7 +59,7 @@ class RegistroDeportivoController extends AppController
         $this->set(compact('registroDeportivo'));
         $this->set('_serialize', ['registroDeportivo']);
         
-        echo "------------".$id;
+     
         $deportista = $this->loadModel('deportista');
         //paso la consulta a un array
         $datadeportista = $deportista->find('all')->toArray();

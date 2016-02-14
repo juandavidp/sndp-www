@@ -71,5 +71,62 @@ metodo add registroDeportivo
       
       
       
+      ----codigo view deportista
       
-       
+      
+       <div class="deportista view large-9 medium-8 columns content">
+    <h3><?= h($deportista->iddeportista) ?></h3>
+    <table class="table table-striped">
+        <tr>
+          
+            <div class="text-center">
+              <h1><?= h($deportista->nombre) ?></h1>
+        </div>
+    
+ 
+    
+        </tr>
+        <tr>
+            <th><?= __('Documento de identidad') ?></th>
+            <td><?= h($deportista->docidentidad) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Lugar Nacimiento') ?></th>
+            <td><?= h($deportista->lugar_nacimiento) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Categoria') ?></th>
+            <td><?= h($deportista->categoria) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Tipo Asociacion') ?></th>
+            <td><?= h($deportista->tipo_asociacion) ?></td>
+        </tr>
+    
+        <tr>
+            <th><?= __('Ranking Nacional') ?></th>
+            <td><?= $this->Number->format($deportista->ranking_nacional) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Ranking Internacional') ?></th>
+            <td><?= $this->Number->format($deportista->ranking_internacional) ?></td>
+        </tr>
+        
+        <tr>
+            <th><?= __('Deporte que practica') ?></th>
+            <td><?= $this->Number->format($deportista->deporte_iddeporte) ?></td>
+        </tr>
+        
+          
+         <tr>
+             <th><?= __('Fecha Nacimiento') ?></th>
+              <td><?= h($deportista->fecha_nacimiento) ?></tr>
+         </tr>
+     </table>
+ </div>
+ 
+ 
+ 
+---- index deportista----
+ 
+   

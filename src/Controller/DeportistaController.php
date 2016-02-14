@@ -18,7 +18,15 @@ class DeportistaController extends AppController
      */
     public function index()
     {
-        $this->set('deportista', $this->paginate($this->Deportista));
+      //$miidesession=$_Session['idEntidad'];
+        $miidesession = $this->request->session()->read('idEntidad');
+        
+         //obtengo los nombres y id de las entidades
+        $entidad=$this->loadModel('entidad');
+        $deportista=$this->loadModel('deportista');
+        $datos = $this->Deportista->find('all')->where(['entidad_idEntidad' => $miidesession])->toArray();
+       
+       $this->set('deportista', $this->paginate($this->Deportista));
         $this->set('_serialize', ['deportista']);
     }
 
@@ -37,15 +45,28 @@ class DeportistaController extends AppController
         
         $id_deportista = $deportista -> iddeportista;
         
-         //obtengo los nombres y id de los diferentes deportes
+        $miidesession = $this->request->session()->read('idEntidad');
+        $buscardeporte_actividad =$deportista->deporte_iddeporte;
+        
+         //obtengo los nombres y id de los diferentes registros
         $registro_deportivo=$this->loadModel('registroDeportivo');
         $regisDeporte = $registro_deportivo->find('all')->where(['deportista_iddeportista' => $id_deportista])->toArray();
         $this->set('registroDeportivo',$regisDeporte);
         $this->set('_serialize', ['registroDeportivo']);
         
+          //obtengo los nombres y id de los diferentes deportes
+        $deporte_actividad=$this->loadModel('deporte_actividad');
+        $actividadSeleccionada = $deporte_actividad->find('all')->where(['deporte_actividad.iddeporte' => $buscardeporte_actividad])->toArray();
+        $this->set('deporte_actividad',$actividadSeleccionada);
+        $this->set('_serialize', ['deporte_actividad']);
+
+        
+        
         
         $this->set('deportista', $deportista);
         $this->set('_serialize', ['deportista']);
+        
+        
     }
 
     /**
