@@ -1,14 +1,18 @@
-<form class="form-horizontal" method="post" accept-charset="utf-8" action="/escenario/add" >
+<div class="box box-primary">
+
+    <div class="box-header with-border">
+      <div id="msj-response"></div>
+      <h3 class="box-title">Crear Escenario</h3>
+
+
+    </div><!-- /.box-header -->
+<form class="form-horizontal" id="miform" method="post" accept-charset="utf-8" action="/escenario/add" >
 
 
 
     <fieldset>
 
     <!-- Form Name -->
-
-    <legend>Crear Escenario</legend>
-
-
     <!-- Text input-->
     <div class="form-group">
         <label class="col-md-4 control-label" for="textinput">Nombre</label>
@@ -21,11 +25,11 @@
     <div class="form-group">
      <label class="col-md-4 control-label" for="textinput">Tipo de Escenario</label>
         <div class="col-md-4">
-            <select id="tipo" name="tipo" class="form-control">
+            <select id="dedicacion_iddedicacion" name="dedicacion_iddedicacion" class="form-control">
             <option value="">--Selecciona un tipo de escenario--</option>
-         <?php foreach ($dedicacion as $dedicaciones): ?>
-                <option value="<?=  $dedicaciones->iddedicacion ?>"><?=  $dedicaciones->dedicacion ?></option>
-            <?php endforeach; ?>
+                 <?php foreach ($dedicacion as $dedicaciones): ?>
+                    <option value="<?=  $dedicaciones->iddedicacion ?>"><?=  $dedicaciones->dedicacion ?></option>
+                 <?php endforeach; ?>
             </select>
         </div>
     </div>
@@ -34,11 +38,7 @@
     <div class="form-group">
      <label class="col-md-4 control-label" for="textinput">Actividad Deporte </label>
         <div class="col-md-4">
-        <select id="actividad_deporte" name="actividad_deporte" onchange="filtrarActividades()" class="form-control">
-            <option value="">--Selecciona una actividad--</option>
-         <?php foreach ($deportes_por_dedicacion as $deportes_por_dedicaciones): ?>
-                <option value="<?=  $deportes_por_dedicaciones->deporte_iddeporte ?>"><?=  $deportes_por_dedicaciones->deporte_iddeporte ?></option>
-            <?php endforeach; ?>
+        <select id="deporte_iddeporte" name="deporte_iddeporte" class="form-control" disabled=true>
      </select>
         </div>
     </div>
@@ -85,20 +85,56 @@
     </div>
 
 
-    <!-- Text input ENTIDAD TOMA POR DEFAULT la entidad relacionada con el usuario que esta ingresando la informaciOn-->
+
     <div class="form-group">
     <label class="col-md-4 control-label" for="textinput">Departamento</label>
     <div class="col-md-4">
-    <input id="departamento" name="departamento" type="text" placeholder="Departamento" class="form-control input-md" required>
+    <select id="departamento" name="departamento" class="form-control input-md">
+            <option></option>
+        	<option value="amazonas">Amazonas</option>
+        	<option value="antioquia">Antioquia</option>
+        	<option value="arauca">Arauca</option>
+        	<option value="atlantico">Atl&aacute;ntico</option>
+        	<option value="bolivar">Bolivar</option>
+        	<option value="boyaca">Boyac&aacute;</option>
+        	<option value="caldas">Caldas</option>
+        	<option value="caqueta">Caquet&aacute;</option>
+        	<option value="casanare">Casanare</option>
+        	<option value="cauca">Cauca</option>
+        	<option value="cesar">Cesar</option>
+        	<option value="choco">Choc&oacute;</option>
+        	<option value="cordoba">C&oacute;rdoba</option>
+        	<option value="cundinamarca">Cundinamarca</option>
+        	<option value="guainia">Guain&iacute;ia</option>
+        	<option value="guaviare">Guaviare</option>
+        	<option value="huila">Huila</option>
+        	<option value="guajira">La Guajira</option>
+        	<option value="magdalena">Magdalena</option>
+        	<option value="meta">Meta</option>
+        	<option value="narino">Nari&ntilde;o</option>
+        	<option value="norte_santander">Norte de Santander</option>
+        	<option value="putumayo">Putumayo</option>
+        	<option value="quindio">Quind&iacute;io</option>
+        	<option value="risaralda">Risaralda</option>
+        	<option value="san_andres">San Andr&eacute;s y Providencia</option>
+        	<option value="santander">Santander</option>
+        	<option value="sucre">Sucre</option>
+        	<option value="tolima">Tolima</option>
+        	<option value="valle">Valle Del Cauca</option>
+        	<option value="vaupes">Vaup&eacute;s</option>
+        	<option value="vichada">Vichada</option>
+        </select>
 
     </div>
     </div>
 
     <!-- Text input-->
-    <div class="form-group">
-    <label class="col-md-4 control-label" for="textinput">Municipio</label>
+     <div class="form-group">
+      <label class="col-md-4 control-label">Municipio</label>
     <div class="col-md-4">
-    <input id="municipio" name="municipio" type="text" placeholder="Municipio" class="form-control input-md" required>
+    <select id="municipio" name="municipio" class="form-control input-md">
+    </select>
+
     </div>
     </div>
 
@@ -110,21 +146,8 @@
         </div>
     </div>
 
-
-    <div class="form-group">
-     <label class="col-md-4 control-label" for="textinput">Entidad Responsable</label>
-        <div class="col-md-4">
-        <select id="entidad_idEntidad" name="entidad_idEntidad" class="form-control">
-            <option value="">--Selecciona Entidad Responsable del Mantenimiento--</option>
-             <?php foreach ($entidad as $entidades): ?>
-              <option value="<?=  $entidades->idEntidad ?>"><?=  $entidades->nombre ?></option>
-            <?php endforeach; ?>
-        </select>
-        </div>
-    </div>
-
-
-
+    <input id="latitud" name="latitud"  type="hidden">
+    <input id="longitud" name="longitud" type="hidden">
 
 <!-- mapa -->
 <div id="map"></div>
@@ -167,16 +190,16 @@
   }
 
 
-    var map;
+     var map;
     function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat:3.435234, lng:-76.5292233},
-            zoom: 13
-        });
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat:3.435234, lng:-76.5292233},
+                zoom: 13
+            });
 
-        $('input[name=direccion]').change(function() {
-            buscar_direccion();
-        });
+            $('input[name=direccion]').change(function() {
+                buscar_direccion();
+            });
     }
     </script>
 
@@ -193,41 +216,55 @@
         }
     </script>
 
-    <script type="text/javascript">
-
-        function filtrarActividades(){
-          alert (tipo.value);
-        }
-
-    </script>
 
 
 <!-- Button (Double) -->
 <div class="form-group">
  <label class="col-md-4 control-label" for="button1id"></label>
  <div class="col-md-8">
-   <button id="button1id" name="button1id" class="btn btn-primary">Aceptar</button>
+   <input type="button" id="button1id" name="button1id" class="btn btn-primary" value="Aceptar">
    <button id="button2id" name="button2id" class="btn btn-danger">Cancelar</button>
-
  </div>
 </div>
 
     </fieldset>
+</div>
  </form>
 
-
-
 <script type="text/javascript">
-$( "#tipo" ).on('change', function() {
-            seleccionado=$("#tipo").val();
-            alert (seleccionado);
-  $.ajax({  type: "POST",
-            url:'/escenario/prueba',
-            data: "seleccion ="+seleccionado,
-            dataType: 'json',
-            success: function( data ){
+$( "#dedicacion_iddedicacion" ).on('change', function() {
+            seleccionado=$("#dedicacion_iddedicacion").val();
+            $.ajax({  type: "POST",
+                url:'/escenario/filtro',
+                data: "seleccion ="+seleccionado,
+                dataType: 'json',
+                success: function( data ){
+                document.getElementById("deporte_iddeporte").disabled = false;
+                $("#deporte_iddeporte").html("");
+                $("#deporte_iddeporte").append('<option value="">--Selecciona un deporte--</option>');
 
-            }
+                for (var i = 0; i<data.length; i++) {
+                    $("#deporte_iddeporte").append('<option value="' + data[i].x.iddeporte + '">' + data[i].x.nombre + '</option>');
+                };
+
+                //$("#actividad_deporte").prop("disabled"= false);
+                //$("#actividad_deporte").removeAttr("disabled");
+                }
+            });
         });
-    });
+
+
+        $( "#button1id" ).click(function() {
+          $.post( "/escenario/add", $("#miform").serialize(),function( data ) {
+              if (data.status=="success"){
+                $("#msj-response").html("<div class='alert alert-success' role='alert'>"+data.message+"</div>");
+              }
+              else{
+                $("#msj-response").html("<div class='alert alert-danger' role='alert'>"+data.message+"</div>");
+              }
+          },"json");
+        });
 </script>
+
+
+<script type="text/javascript" src="/js/departamentos_ciudades.js" charset="utf-8"></script>

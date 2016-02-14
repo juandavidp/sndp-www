@@ -47,10 +47,6 @@ class EscenarioTable extends Table
             ->notEmpty('nombre');
 
         $validator
-            ->requirePresence('actividad_deporte', 'create')
-            ->notEmpty('actividad_deporte');
-
-        $validator
             ->add('capacidad', 'valid', ['rule' => 'numeric'])
             ->requirePresence('capacidad', 'create')
             ->notEmpty('capacidad');
@@ -104,6 +100,12 @@ class EscenarioTable extends Table
             ->requirePresence('dedicacion_iddedicacion', 'create')
             ->notEmpty('dedicacion_iddedicacion');
 
+        $validator
+            ->add('deporte_iddeporte', 'valid', ['rule' => 'numeric'])
+            ->requirePresence('deporte_iddeporte', 'create')
+            ->notEmpty('deporte_iddeporte');
+
         return $validator;
     }
+
 }

@@ -74,12 +74,13 @@ class DeportistaController extends AppController
      *
      * @return void Redirects on successful add, renders view otherwise.
      */
-    public function add()
+     public function add()
     {
         $deportista = $this->Deportista->newEntity();
         if ($this->request->is('post')) {
             $deportista = $this->Deportista->patchEntity($deportista, $this->request->data);
             $deportista->entidad_idEntidad=$_SESSION['idEntidad'];
+            $deportista->fecha_nacimiento=$this->request->data['fecha_nacimiento'];
             if ($this->Deportista->save($deportista)) {
                 $this->Flash->success(__('Este deportista a sido guardado.'));
                 return $this->redirect(['action' => 'index']);
@@ -113,6 +114,7 @@ class DeportistaController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $deportista = $this->Deportista->patchEntity($deportista, $this->request->data);
+            $deportista->fecha_nacimiento=$this->request->data['fecha_nacimiento'];
             
             if ($this->Deportista->save($deportista)) {
                 $this->Flash->success(__('Este deportista a sido guardado.'));

@@ -75,6 +75,7 @@
     <label class="col-md-4 control-label" for="textinput">Departamento</label>
     <div class="col-md-4">
     <select id="departamento" name="departamento" class="form-control input-md">
+            <option></option>
         	<option value="amazonas">Amazonas</option>
         	<option value="antioquia">Antioquia</option>
         	<option value="arauca">Arauca</option>

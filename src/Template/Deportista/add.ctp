@@ -26,7 +26,7 @@
       <div class="form-group">
       <label class="col-md-4 control-label" for="date">Fecha de nacimiento</label>  
        <div class="col-md-4">
-       <input id="datepicker" type="datepicker" name="fecha"  class="form-control input-md" required>
+       <input id="fecha_nacimiento" type="date" name="fecha_nacimiento"  class="form-control input-md" min="1950-01-01" max="2000-12-31">
        </div>
       </div>
       
@@ -37,14 +37,18 @@
         <input type="text" name="lugar_nacimiento" class="form-control" id="lugar_nacimiento" placeholder="Introduzca su lugar de nacimiento">
          </div>
       </div>
+      
      
      <div class="form-group">
         <label class="col-md-4 control-label" for="selectbasic">Categoria deportista</label>
          <div class="col-md-4">
         <select id="categoria" name="categoria" class="form-control">
+         <option ></option>
           <option value="juvenil">Juvenil</option>
           <option value="junior">Junior</option>
           <option value="señior">Señior</option>
+          <option value="juvenil">Amateur</option>
+          <option value="juvenil">Profesional</option>
         </select>
          </div>
       </div>
@@ -67,6 +71,7 @@
         <label  class="col-md-4 control-label"  for="selectbasic">Asociación deportista</label>
          <div class="col-md-4">
         <select id="tipo_asociacion" name="tipo_asociacion" class="form-control">
+         <option ></option>
           <option value="con pase">Con pase</option>
           <option value="asocidado mensual">Asociado mensual</option>
           <option value="asocidado anual">Asociado anual</option>
@@ -79,7 +84,7 @@
     <label class="col-md-4 control-label" for="selectbasic">Deporte que practica</label>
      <div class="col-md-4">
     <select id="deporte_iddeporte" name="deporte_iddeporte" class="form-control" >
-       
+       <option ></option>
        
         <?php foreach ($deportes as $deporte): ?>
            <option value="<?=  $deporte->iddeporte ?>"><?=  $deporte->nombre ?></option>
@@ -105,13 +110,4 @@
   
 </div>
 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-
-<script>
-$(function() {
-  $("#datepicker").datepicker({ dateFormat: 'yy-mm-dd' })
-  $( "#datepicker" ).datepicker();
-});
-</script>

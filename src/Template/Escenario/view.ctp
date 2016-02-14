@@ -1,76 +1,107 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Escenario'), ['action' => 'edit', $escenario->idescenario]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Escenario'), ['action' => 'delete', $escenario->idescenario], ['confirm' => __('Are you sure you want to delete # {0}?', $escenario->idescenario)]) ?> </li>
-        <li><?= $this->Html->link(__('List Escenario'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Escenario'), ['action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="escenario view large-9 medium-8 columns content">
-    <h3><?= h($escenario->idescenario) ?></h3>
-    <table class="table table-striped">
-        <tr>
-            <th><?= __('Nombre') ?></th>
-            <td><?= h($escenario->nombre) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Actividad Deporte') ?></th>
-            <td><?= h($escenario->actividad_deporte) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Estado Escala') ?></th>
-            <td><?= h($escenario->estado_escala) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Departamento') ?></th>
-            <td><?= h($escenario->departamento) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Municipio') ?></th>
-            <td><?= h($escenario->municipio) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Direccion') ?></th>
-            <td><?= h($escenario->direccion) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Longitud') ?></th>
-            <td><?= h($escenario->longitud) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Latitud') ?></th>
-            <td><?= h($escenario->latitud) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Capacidad Deportistas') ?></th>
-            <td><?= h($escenario->capacidad_deportistas) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Idescenario') ?></th>
-            <td><?= $this->Number->format($escenario->idescenario) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Capacidad') ?></th>
-            <td><?= $this->Number->format($escenario->capacidad) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Entidad Responsable') ?></th>
-            <td><?= h($escenario->entidad_idEntidad) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Capacidad Publico') ?></th>
-            <td><?= $this->Number->format($escenario->capacidad_publico) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Tipo') ?></th>
-            <td><?= $this->Number->format($escenario->tipo) ?></td>
-        </tr>
+<div class="box box-primary">
+        <div class="text-center">
+              <h1><?= h($escenario->nombre) ?></h1>
+        </div>
 
-        <tr>
-            <th><?= __('Estado') ?></th>
-            <td><?= $this->Text->autoParagraph(h($escenario->estado)); ?></td>
-        </tr>
+        <div class="form-group">
+            <div class="col-md-2">
+            <h3><span class="label label-info">Tipo</span></h3>
+            </div>
+            <div class="col-md-3">
+            <?php foreach ($dedicacion as $dedicacions): ?>                
+            <h3><?= h($dedicacions->dedicacion) ?></h3>            
+            <?php endforeach; ?>
+            </div>
+            <div class="col-md-3">
+            <h3><span class="label label-info">Actividad</span></h3>
+            </div>
+            <div class="col-md-3">
+            <?php foreach ($deporte_actividad as $deporte_actividades): ?>                
+            <h3><?= h($deporte_actividades->nombre) ?></h3>
+            <?php endforeach; ?>
+            </div>
+        </div>
 
-    </table>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="col-sm-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                    <h3 class="panel-title">Capacidad del Escenario</h3>
+                    </div>
+                    <div class="panel-body">
+                            <label class="col-sm-1 control-label" for="textinput">Publico:</label>
+                            <div class="col-md-1"><?= h($escenario->capacidad_publico) ?></div>
+                            <label class="col-md-2 control-label" for="textinput">Deportistas:</label>
+                            <div class="col-md-1"><?= h($escenario->capacidad_deportistas) ?></div>
+                            <label class="col-md-1 control-label" for="textinput">Total:</label>
+                            <div class="col-md-1"><?= h($escenario->capacidad) ?></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                    <h3 class="panel-title">Estado del Escenario</h3>
+                    </div>
+                    <div class="panel-body">
+                            <label class="col-sm-2 control-label" for="textinput">Observación:</label>
+                            <div class="col-md-3"><?= h($escenario->estado_comentario) ?></div>
+                            <label class="col-md-2 control-label" for="textinput">Calificación:</label>
+                            <div class="col-md-1"><?= h($escenario->estado_escala) ?></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                    <h3 class="panel-title">Ubicación del escenario</h3>
+                    </div>
+                    <div class="panel-body">
+                            <label class="col-sm-2 control-label" for="textinput">Departamento:</label>
+                            <div class="col-md-2"><?= h($escenario->departamento) ?></div>
+                            <label class="col-md-1 control-label" for="textinput">Ciudad:</label>
+                            <div class="col-md-2"><?= h($escenario->municipio) ?></div>
+                            <label class="col-md-2 control-label" for="textinput">Dirección:</label>
+                            <div class="col-md-3"><?= h($escenario->direccion) ?></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                    <h3 class="panel-title">Entidad Responsable</h3>
+                    </div>
+                    <div class="panel-body">
+                    <?php foreach ($entidad as $entidades): ?>                
+                         <h3><?= h($entidades->nombre) ?></h3>            
+                    <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                       <!-- mapa -->
+        <div class="col-md-4" id="map2"></div>
+    </div>
 </div>
+
+<script type="text/javascript">
+    var map;
+    function initMap() {
+        var myLatLong = {lat:<?= $escenario->latitud?>, lng:<?= $escenario->longitud?>};   
+        map = new google.maps.Map(document.getElementById('map2'), {
+            zoom: 15,
+            center : myLatLong
+            });
+        var marker = new google.maps.Marker({position:myLatLong,map:map,title:'<?= $escenario->nombre?>'});  
+    }
+</script>
+
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key= AIzaSyAhbxs63blYtEmX7yY0h9KtBnao0_EsUQo&callback=initMap">
+</script>

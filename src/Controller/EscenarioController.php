@@ -1,8 +1,6 @@
 <?php
 namespace App\Controller;
 
-use App\Controller\UsuarioController;
-
 use App\Controller\AppController;
 
 /**
@@ -12,10 +10,7 @@ use App\Controller\AppController;
  */
 class EscenarioController extends AppController
 {
-
-
-    public $paginate= array('limit'=> 5, 'order' => array('Escenario.idescenario'=> 'asc'));
-
+public $paginate= array('limit'=> 5, 'order' => array('Escenario.idescenario'=> 'asc'));
 
     /**
      * Index method
@@ -24,7 +19,16 @@ class EscenarioController extends AppController
      */
     public function index()
     {
+        //$miidesession=$_Session['idEntidad'];
+        $miidesession = $this->request->session()->read('idEntidad');
+
+        //obtengo los nombres y id de las entidades
+        $entidad=$this->loadModel('entidad');
+
+        $escenario=$this->loadModel('escenario');
+        $datos = $this->Escenario->find('all')->where(['entidad_idEntidad' => $miidesession])->toArray();
         $this->set('escenario', $this->paginate($this->Escenario));
+        $this->set('escenario', $datos);
         $this->set('_serialize', ['escenario']);
     }
 
@@ -40,42 +44,32 @@ class EscenarioController extends AppController
         $escenario = $this->Escenario->get($id, [
             'contain' => []
         ]);
-        $this->set('escenario', $escenario);
-        $this->set('_serialize', ['escenario']);
 
+        $miidesession = $this->request->session()->read('idEntidad');
+        $buscardedicacion = $escenario->dedicacion_iddedicacion;
+        $buscardeporte_actividad =$escenario->deporte_iddeporte;
 
-        //obtengo los nombres y id de los usuarios
-        $usuario=$this->loadModel('usuario');
-        // Once we have a result set we can get all the rows
-        $data = $usuario->find('all')->toArray();
+        //obtengo los nombres y id de kas dedicaciones
+        $dedica=$this->loadModel('dedicacion');
+        // Selecciono el tipo de deporte correspondiente.
+        $dataDedicacion = $dedica->find('all')->where(['dedicacion.iddedicacion' => $buscardedicacion])->toArray();
+        $this->set('dedicacion',$dataDedicacion);
+        $this->set('_serialize', ['dedicacion']);
 
-        $this->set('usuario',$data);
-        $this->set('_serialize', ['usuario']);
-        //$this->set('_serialize', ['entidad']);
+        // obtengo el deporte o actividad seleccionado.
+        $deporte_actividad=$this->loadModel('deporte_actividad');
+        $actividadSeleccionada = $deporte_actividad->find('all')->where(['deporte_actividad.iddeporte' => $buscardeporte_actividad])->toArray();
+        $this->set('deporte_actividad',$actividadSeleccionada);
+        $this->set('_serialize', ['deporte_actividad']);
 
         //obtengo los nombres y id de las entidades
         $entidad=$this->loadModel('entidad');
-        // Once we have a result set we can get all the rows
-        $datas = $entidad->find('all')->toArray();
-
-        $this->set('entidad',$datas);
+        $nombreEntidad = $entidad->find('all')->where(['entidad.idEntidad' => $miidesession])->toArray();
+        $this->set('entidad',$nombreEntidad);
         $this->set('_serialize', ['entidad']);
 
-        //obtengo los nombres y id de los diferentes deportes
-        $deporte=$this->loadModel('deporte');
-        // Once we have a result set we can get all the rows
-        $dataDeporte = $deporte->find('all')->toArray();
-
-        $this->set('deporte',$dataDeporte);
-        $this->set('_serialize', ['deporte']);
-
-        //obtengo los nombres y id de kas dedicaciones
-        $dedicacion=$this->loadModel('dedicacion');
-        // Once we have a result set we can get all the rows
-        $dataDedicacion = $dedicacion->find('all')->toArray();
-
-        $this->set('dedicacion',$dataDedicacion);
-        $this->set('_serialize', ['dedicacion']);
+        $this->set('escenario', $escenario);
+        $this->set('_serialize', ['escenario']);
     }
 
     /**
@@ -88,22 +82,33 @@ class EscenarioController extends AppController
         $escenario = $this->Escenario->newEntity();
         if ($this->request->is('post')) {
             $escenario = $this->Escenario->patchEntity($escenario, $this->request->data);
-            $escenario->entidad_idEntidad=$_SESSION['idEntidad'];
-
+            $escenario->entidad_idEntidad = $_SESSION['idEntidad'];
             if ($this->Escenario->save($escenario)) {
-                $this->Flash->success(__('El escenario fue guardado exitosamente.'));
-                return $this->redirect(['action' => 'index']);
+                $response['status']='success';
+                $response['message']='La Entidad fue guardada con exito';
+                echo json_encode($response);
+                die;
             } else {
-                $this->Flash->error(__('El escenario no pudo ser guardado, intentelo de nuevo.'));
+                  //obtenemos los errores
+                  $errores=$escenario->errors();
+                  //var_export($errores);
+                  //conseguimos el msj con el error
+                  $campo_con_error=$this->validador_campos($errores);
+                  $response=array();
+                  $response['status']='error';
+                  $response['message']=$campo_con_error;
+                  echo json_encode($response);
+                  die;
             }
         }
-
-
-// cargar actividades o deporte especificio en combobox
         $this->set(compact('escenario'));
         $this->set('_serialize', ['escenario']);
 
-
+        //obtengo los nombres y id de kas dedicaciones
+        $dedicacion=$this->loadModel('dedicacion');
+        $dataDedicacion = $dedicacion->find('all')->toArray();
+        $this->set('dedicacion',$dataDedicacion);
+        $this->set('_serialize', ['dedicacion']);
 
         //obtengo los nombres y id de las entidades
         $entidad=$this->loadModel('entidad');
@@ -112,29 +117,7 @@ class EscenarioController extends AppController
         $this->set('_serialize', ['entidad']);
 
 
-        //obtengo los nombres y id de los diferentes deportes
-        $deporte_actividad=$this->loadModel('deporte_actividad');
-        $dataDeporte = $deporte_actividad->find('all')->toArray();
-        $this->set('deporte_actividad',$dataDeporte);
-        $this->set('_serialize', ['deporte_actividad']);
-
-        //obtengo los nombres y id de kas dedicaciones
-        $dedicacion=$this->loadModel('dedicacion');
-        $dataDedicacion = $dedicacion->find('all')->toArray();
-        $this->set('dedicacion',$dataDedicacion);
-        $this->set('_serialize', ['dedicacion']);
-
     }
-
-
-    public function filtroActividaDeporte()
-    {
-
-
-    }
-
-
-
 
     /**
      * Edit method
@@ -145,56 +128,55 @@ class EscenarioController extends AppController
      */
     public function edit($id = null)
     {
-        $escenario = $this->Escenario->get($id, [
-            'contain' => []
-        ]);
+
+        $escenario = $this->Escenario->get($id, ['contain' => []]);
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $escenario = $this->Escenario->patchEntity($escenario, $this->request->data);
+
             if ($this->Escenario->save($escenario)) {
-                $this->Flash->success(__('The escenario has been saved.'));
-                return $this->redirect(['action' => 'index']);
+              $response['status']='success';
+              $response['message']='La Entidad fue guardada con exito';
+              echo json_encode($response);
+              die;
             } else {
-                $this->Flash->error(__('The escenario could not be saved. Please, try again.'));
+              //obtenemos los errores
+              $errores=$escenario->errors();
+              //var_export($errores);
+              //conseguimos el msj con el error
+              $campo_con_error=$this->validador_campos($errores);
+              $response=array();
+              $response['status']='error';
+              $response['message']=$campo_con_error;
+              echo json_encode($response);
+              die;
             }
         }
-        $this->set(compact('escenario'));
-        $this->set('_serialize', ['escenario']);
 
+        $buscardedicacion = $escenario->dedicacion_iddedicacion;
+        $buscardeporte_actividad =$escenario->deporte_iddeporte;
 
-        //obtengo los nombres y id de los usuarios
-        $usuario=$this->loadModel('usuario');
-        // Once we have a result set we can get all the rows
-        $data = $usuario->find('all')->toArray();
-
-        $this->set('usuario',$data);
-        $this->set('_serialize', ['usuario']);
-        //$this->set('_serialize', ['entidad']);
-
-        //obtengo los nombres y id de las entidades
-        $entidad=$this->loadModel('entidad');
-        // Once we have a result set we can get all the rows
-        $datas = $entidad->find('all')->toArray();
-
-        $this->set('entidad',$datas);
-        //$this->set('_serialize', ['entidad']);
-
-        //obtengo los nombres y id de los diferentes deportes
-        $deporte=$this->loadModel('deporte');
-        // Once we have a result set we can get all the rows
-        $dataDeporte = $deporte->find('all')->toArray();
-
-        $this->set('deporte',$dataDeporte);
-        $this->set('_serialize', ['deporte']);
 
         //obtengo los nombres y id de kas dedicaciones
         $dedica=$this->loadModel('dedicacion');
-        // Once we have a result set we can get all the rows
-        $dataDedicacion = $dedica->find('all')->toArray();
-
+        // Selecciono el tipo de deporte correspondiente.
+        $dataDedicacion = $dedica->find('all')->where(['dedicacion.iddedicacion' => $buscardedicacion])->toArray();
         $this->set('dedicacion',$dataDedicacion);
         $this->set('_serialize', ['dedicacion']);
+        // cargo todos los tipos de deporte u actividad por si se va hacer una modificaciOn.
+        $datos = $dedica->find('all');
+        $this->set('dedicaciones',$datos);
+        $this->set('_serialize', ['dedicaciones']);
 
 
+        // obtengo el deporte o actividad seleccionado.
+        $deporte_actividad=$this->loadModel('deporte_actividad');
+        $actividadSeleccionada = $deporte_actividad->find('all')->where(['deporte_actividad.iddeporte' => $buscardeporte_actividad])->toArray();
+        $this->set('deporte_actividad',$actividadSeleccionada);
+        $this->set('_serialize', ['deporte_actividad']);
+
+        $this->set(compact('escenario'));
+        $this->set('_serialize', ['escenario']);
 
     }
 
@@ -215,75 +197,53 @@ class EscenarioController extends AppController
             $this->Flash->error(__('The escenario could not be deleted. Please, try again.'));
         }
         return $this->redirect(['action' => 'index']);
-
-
-
-        //obtengo los nombres y id de los usuarios
-        $usuario=$this->loadModel('usuario');
-        // Once we have a result set we can get all the rows
-        $data = $usuario->find('all')->toArray();
-
-        $this->set('usuario',$data);
-        $this->set('_serialize', ['usuario']);
-        //$this->set('_serialize', ['entidad']);
-
-        //obtengo los nombres y id de las entidades
-        $entidad=$this->loadModel('entidad');
-        // Once we have a result set we can get all the rows
-        $datas = $entidad->find('all')->toArray();
-
-        $this->set('entidad',$datas);
-        $this->set('_serialize', ['entidad']);
-
-        //obtengo los nombres y id de los diferentes deportes
-        $deporte=$this->loadModel('deporte_actividad');
-        // Once we have a result set we can get all the rows
-        $dataDeporte = $deporte->find('all')->toArray();
-
-        $this->set('deporte',$dataDeporte);
-        $this->set('_serialize', ['deporte']);
-
-        //obtengo los nombres y id de kas dedicaciones
-        $dedica=$this->loadModel('dedicacion');
-        // Once we have a result set we can get all the rows
-        $dataDedicacion = $dedica->find('all')->toArray();
-
-        $this->set('dedicacion',$dataDedicacion);
-        $this->set('_serialize', ['dedicacion']);
-    }
-<<<<<<< HEAD
-
-
-
-public function prueba(){
-            if($this->request->is('ajax')) {
-            $idBuscar=$this->request->data['seleccion_'];
-
-    $deportes_por_dedicacion=$this->loadModel('deportes_por_dedicacion');
-    $result = $deportes_por_dedicacion->find()->select(['x.iddeporte','x.nombre'])->autofields(false)
-    ->where(['deportes_por_dedicacion.dedicacion_iddedicacion' => $idBuscar])->innerJoin(
-    ['x' => 'deporte_actividad'],
-    ['x.iddeporte = deportes_por_dedicacion.deporte_iddeporte'])->toArray();
-                echo json_encode ($result);
-
-            }
     }
 
 
-    public $usuarios = array('Html', 'Form');
-
-     public function find() {
-
-            $usuarios = $this->$usuario->find('list', array(
-                  'fields' => array('Usuario.idusuario', 'Usuario.nombre')
-            ));
-            $this->set('usuarios', $usuarios);
+    public function filtro(){
+        if($this->request->is('ajax')) {
+        $idBuscar=$this->request->data['seleccion_'];
+        $deportes_por_dedicacion=$this->loadModel('deportes_por_dedicacion');
+        $result = $deportes_por_dedicacion->find()->
+        select(['x.iddeporte','x.nombre'])->autofields(false)->
+        where(['deportes_por_dedicacion.dedicacion_iddedicacion' => $idBuscar])->
+        innerjoin(
+        ['x' => 'deporte_actividad'],
+        ['x.iddeporte = deportes_por_dedicacion.deporte_iddeporte'])->toArray();
+        //var_export($result);
+                    $this->RequestHandler->respondAs('json');
+                    $this->autoRender = false;
+                    echo json_encode ($result);
         }
+    }
 
+    /*
+    *la funcion validador_campos retorna el mensaje con el error de determinado campo
+    *las traducciones se hicieron en vendor/cakephp/cakephp/src/Validation.php
+    **/
+    function validador_campos($errores){
+      $campos=array("nombre","capacidad","estado_escala","estado_comentario","municipio","direccion","capacidad_publico","capacidad_deportistas",);
+      $campo_con_error="";
+      foreach ($campos as $campo ) {
+        //verificamos que el campo exista
 
+          if (isset($errores[$campo])){
 
+             foreach ($errores[$campo] as $error) {
 
+                $campo_con_error="El campo ".$campo." ".$error;
+                //mostramos un solo error
 
-
+                break;
+             }
+             //mostramos un solo error
+             break;
+          }
+      }
+      if($campo_con_error==""){
+        $campo_con_error="El registro no pudo ser guardado";
+      }
+      return $campo_con_error;
+    }
 
 }

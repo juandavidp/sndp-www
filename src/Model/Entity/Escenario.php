@@ -8,7 +8,6 @@ use Cake\ORM\Entity;
  *
  * @property int $idescenario
  * @property string $nombre
- * @property string $actividad_deporte
  * @property int $capacidad
  * @property int $estado_escala
  * @property string $estado_comentario
@@ -21,6 +20,7 @@ use Cake\ORM\Entity;
  * @property int $capacidad_publico
  * @property int $capacidad_deportistas
  * @property int $dedicacion_iddedicacion
+ * @property int $deporte_iddeporte
  */
 class Escenario extends Entity
 {
