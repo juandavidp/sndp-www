@@ -39,6 +39,11 @@
      <label class="col-md-4 control-label" for="textinput">Actividad Deporte </label>
         <div class="col-md-4">
         <select id="deporte_iddeporte" name="deporte_iddeporte" class="form-control" disabled=true>
+       
+        <?php foreach ($deportes as $deporte): ?>
+           <option value="<?=  $deporte->iddeporte ?>"><?=  $deporte->nombre ?></option>
+        <?php endforeach; ?>
+     
      </select>
         </div>
     </div>

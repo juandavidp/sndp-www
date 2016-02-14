@@ -97,6 +97,7 @@ class DeportistaController extends AppController
         //paso la consulta a un array
         $datadeporte = $deporte->find('all')->toArray();
         $this->set('deportes',$datadeporte);
+        $this->set('_serialize', ['deportes']);
         
     }
 
@@ -111,7 +112,7 @@ class DeportistaController extends AppController
     {
         $deportista = $this->Deportista->get($id, [
             'contain' => []
-        ]);
+      ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $deportista = $this->Deportista->patchEntity($deportista, $this->request->data);
             $deportista->fecha_nacimiento=$this->request->data['fecha_nacimiento'];
