@@ -38,7 +38,7 @@
     <div class="form-group">
      <label class="col-md-4 control-label" for="textinput">Actividad Deporte </label>
         <div class="col-md-4">
-        <select id="deporte_iddeporte" name="deporte_iddeporte" class="form-control" disabled=true>
+        <select id="deporte_iddeporte" name="deporte_iddeporte" class="form-control" >
        
         <?php foreach ($deportes as $deporte): ?>
            <option value="<?=  $deporte->iddeporte ?>"><?=  $deporte->nombre ?></option>
