@@ -26,7 +26,7 @@
      <label class="col-md-4 control-label" for="textinput">Tipo de Escenario</label>
         <div class="col-md-4">
             <select id="dedicacion_iddedicacion" name="dedicacion_iddedicacion" class="form-control">
-            
+            <option value="">--Selecciona un tipo de escenario--</option>
                  <?php foreach ($dedicacion as $dedicaciones): ?>
                     <option value="<?=  $dedicaciones->iddedicacion ?>"><?=  $dedicaciones->dedicacion ?></option>
                  <?php endforeach; ?>
@@ -36,17 +36,11 @@
 
     <!-- Text input-->
     <div class="form-group">
-    <label class="col-md-4 control-label" for="selectbasic">Deporte </label>
-     <div class="col-md-4">
-    <select id="deporte_iddeporte" name="deporte_iddeporte" class="form-control" >
-       <option ></option>
-       
-        <?php foreach ($deportes as $deporte): ?>
-           <option value="<?=  $deporte->iddeporte ?>"><?=  $deporte->nombre ?></option>
-        <?php endforeach; ?>
-     
-      </select>
-       </div>
+     <label class="col-md-4 control-label" for="textinput">Actividad Deporte </label>
+        <div class="col-md-4">
+        <select id="deporte_iddeporte" name="deporte_iddeporte" class="form-control" disabled=true>
+     </select>
+        </div>
     </div>
 
 
