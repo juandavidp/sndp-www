@@ -4,17 +4,10 @@
         <li><?= $this->Html->link(__('New Escenario'), ['action' => 'add']) ?></li>
     </ul>
 </nav>
-
-<div class="box box-primary">
-    
-    <div class="box-header">
-      <h3 class="box-title">Escenarios</h3>
-
-     </div>
-
-    <div class="box-body table-responsive no-padding">
-    <table  class="table table-striped">
-        <tbody>
+<div class="escenario index large-9 medium-7 columns content">
+    <h3><?= __('Escenario') ?></h3>
+    <table cellpadding="0" cellspacing="0" class="table table-striped">
+        <thead>
             <tr>
                 <th><?= $this->Paginator->sort('idescenario') ?></th>
                 <th><?= $this->Paginator->sort('nombre') ?></th>
@@ -24,7 +17,7 @@
                 <th><?= $this->Paginator->sort('municipio') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
-        </tbody>
+        </thead>
         <tbody>
             <?php foreach ($escenario as $escenarios): ?>
             <tr>
@@ -44,7 +37,6 @@
           
         </tbody>
     </table>
-    </div>
     <div class="paginator">
         <ul class="pagination">
             <?= $this->Paginator->prev('< ' . __('previous')) ?>
@@ -54,4 +46,3 @@
         <p><?= $this->Paginator->counter() ?></p>
     </div>
 </div>
-
