@@ -1,4 +1,7 @@
+
+
 <div class="box box-primary">
+   
   <div class="box-header with-border">
     <div id="msj-response"></div>
     <h3 class="box-title">Editar Deportista</h3>

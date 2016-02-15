@@ -83,9 +83,11 @@ class RegistroDeportivoController extends AppController
             $registroDeportivo = $this->RegistroDeportivo->patchEntity($registroDeportivo, $this->request->data);
             if ($this->RegistroDeportivo->save($registroDeportivo)) {
                 $this->Flash->success(__('The registro deportivo has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['controller'=> 'deportista','action' => 'view', $id]);
             } else {
+
                 $this->Flash->error(__('The registro deportivo could not be saved. Please, try again.'));
+                
             }
         }
         $this->set(compact('registroDeportivo'));

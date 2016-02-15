@@ -1,26 +1,48 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $registroDeportivo->idregistro_deportivo],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $registroDeportivo->idregistro_deportivo)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Registro Deportivo'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
-<div class="registroDeportivo form large-9 medium-8 columns content">
-    <?= $this->Form->create($registroDeportivo) ?>
-    <fieldset>
-        <legend><?= __('Edit Registro Deportivo') ?></legend>
-        <?php
-            echo $this->Form->input('reconocimiento');
-            echo $this->Form->input('marca');
-            echo $this->Form->input('deportista_iddeportista');
-            echo $this->Form->input('info');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
-</div>
+
+
+<div class="box box-primary">
+   
+  <div class="box-header with-border">
+    <div id="msj-response"></div>
+    <h3 class="box-title">Editar Deportista</h3>
+  </div> 
+  
+  <form id="miform1" class="form-horizontal" method="post" accept-charset="utf-8" action=<?php "/registroDeportivo/edit/".$registroDeportivo->idregistro_deportivo ?> >
+      
+      <div class="form-group">
+        <label  class="col-md-4 control-label" for="textinput">Reconocimiento</label>
+        <div class="col-md-4">
+        <input type="text" name="reconocimiento" class="form-control" id="reconocimiento" placeholder="Introduzca  el reconocimiento" value="<?= $registroDeportivo->reconocimiento?>" required>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="textinput">Marca</label>
+        <div class="col-md-4">
+        <input type="number" name="marca" class="form-control" id="marca" placeholder="ingrese la marca" value="<?= $registroDeportivo->marca?>" required>
+        </div>
+      </div>
+      
+    
+      
+     <div class="form-group">
+     <label class="col-md-4 control-label" for="textinput">Información</label>
+     <div class="col-md-4">
+     <textarea  name="info" id="info "rows="10" cols="40" placeholder="ingrese aqui sus comentarios"> <?=  $registroDeportivo->info?></textarea>
+     
+
+     </div>
+    </div>
+      
+      <center>
+      <div class="form-group">
+        <input type="submit" value="Crear">
+      </div>
+       </center>
+
+
+    
+  </form>
+  
+    </div>
+  

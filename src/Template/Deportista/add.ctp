@@ -1,3 +1,10 @@
+<nav class="large-3 medium-4 columns" id="actions-sidebar">
+    <ul class="side-nav">
+        <li class="heading"><?= __('Actions') ?></li>
+       <li><?= $this->Html->link(__('Listar deportistas'), ['action' => 'index']) ?></li>
+    </ul>
+</nav>
+
 <div class="box box-primary">
   <div class="box-header with-border">
     <div id="msj-response"></div>

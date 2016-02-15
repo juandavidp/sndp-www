@@ -1,4 +1,4 @@
-      
+
         
          <div class="form-group">
             <div class="col-md-2">
@@ -87,13 +87,31 @@
                                   <th>RECONOCIMIENTO</th>
                                   <th>MARCA</th>
                                   <th>INFO</th>
+                                  <th>ACCIÒN</th>
+                                  
                                 </tr>
                          
                                 <?php foreach ($registroDeportivo as $registroDeportivo): ?>
                                 <tr>
-                                    <td><?= h($registroDeportivo->reconocimiento) ?></td>
+                                     <td><?= h($registroDeportivo->reconocimiento) ?></td>
                                     <td><?= $this->Number->format($registroDeportivo->marca) ?></td>
                                     <td><?= h($registroDeportivo->info) ?></td>
+                                     <?php
+                                       
+                                      if(@$_SESSION['Auth']['User']['cedula']!=""){
+                                   ?>
+                                    <td class="actions">
+                                            <?= $this->Html->link(__('Editar registro'), ['controller' => 'registroDeportivo','action' => 'edit',$deportista->iddeportista]) ?>
+                                            
+                                            
+                                        </td>
+                                         <?php
+                                       
+                                           
+                                       }
+                                          
+                                      ?>
+                                        
                                 </tr>
                                 <?php endforeach; ?>
                             </tbody>

@@ -115,12 +115,6 @@ public $paginate= array('limit'=> 5, 'order' => array('Escenario.idescenario'=> 
         $datas = $entidad->find('all')->toArray();
         $this->set('entidad',$datas);
         $this->set('_serialize', ['entidad']);
-         
-         $deporte=$this->loadModel('deporte_actividad');
-        //paso la consulta a un array
-        $datadeporte = $deporte->find('all')->toArray();
-        $this->set('deportes',$datadeporte);
-        $this->set('_serialize', ['deportes']);
 
 
     }

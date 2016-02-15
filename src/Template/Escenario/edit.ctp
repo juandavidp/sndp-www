@@ -1,3 +1,5 @@
+
+
 <div class="box box-primary">
 
     <div class="box-header with-border">
@@ -44,7 +46,7 @@
     <div class="form-group">
      <label class="col-md-4 control-label" for="textinput">Actividad Deporte </label>
         <div class="col-md-4">
-        <select id="deporte_iddeporte" name="deporte_iddeporte" disabled=true class="form-control">
+        <select id="deporte_iddeporte" name="deporte_iddeporte" disabled=false class="form-control">
             <?php foreach ($deporte_actividad as $deporte_actividades): ?>
                 <option value="<?= $escenario->actividad_deporte?>"><?=  $deporte_actividades->nombre?></option>
             <?php endforeach; ?>
@@ -93,25 +95,61 @@
             <input id="estado_comentario" name="estado_comentario" type="text" placeholder="ingrese observación del estado" class="form-control input-md" value="<?= $escenario->estado_comentario?>" required>
         </div>
     </div>
-
-
-    <!-- Text input ENTIDAD TOMA POR DEFAULT la entidad relacionada con el usuario que esta ingresando la informaciOn-->
-    <div class="form-group">
+    
+     <div class="form-group">
     <label class="col-md-4 control-label" for="textinput">Departamento</label>
     <div class="col-md-4">
-<input id="departamento" name="departamento" type="text" placeholder="Departamento" class="form-control input-md" value="<?= $escenario->departamento ?>" >
+    <select id="departamento" name="departamento" class="form-control input-md">
+            
+            <option><?=$escenario->departamento?></option>
+            <option></option>
+        	<option value="amazonas">Amazonas</option>
+        	<option value="antioquia">Antioquia</option>
+        	<option value="arauca">Arauca</option>
+        	<option value="atlantico">Atl&aacute;ntico</option>
+        	<option value="bolivar">Bolivar</option>
+        	<option value="boyaca">Boyac&aacute;</option>
+        	<option value="caldas">Caldas</option>
+        	<option value="caqueta">Caquet&aacute;</option>
+        	<option value="casanare">Casanare</option>
+        	<option value="cauca">Cauca</option>
+        	<option value="cesar">Cesar</option>
+        	<option value="choco">Choc&oacute;</option>
+        	<option value="cordoba">C&oacute;rdoba</option>
+        	<option value="cundinamarca">Cundinamarca</option>
+        	<option value="guainia">Guain&iacute;ia</option>
+        	<option value="guaviare">Guaviare</option>
+        	<option value="huila">Huila</option>
+        	<option value="guajira">La Guajira</option>
+        	<option value="magdalena">Magdalena</option>
+        	<option value="meta">Meta</option>
+        	<option value="narino">Nari&ntilde;o</option>
+        	<option value="norte_santander">Norte de Santander</option>
+        	<option value="putumayo">Putumayo</option>
+        	<option value="quindio">Quind&iacute;io</option>
+        	<option value="risaralda">Risaralda</option>
+        	<option value="san_andres">San Andr&eacute;s y Providencia</option>
+        	<option value="santander">Santander</option>
+        	<option value="sucre">Sucre</option>
+        	<option value="tolima">Tolima</option>
+        	<option value="valle">Valle Del Cauca</option>
+        	<option value="vaupes">Vaup&eacute;s</option>
+        	<option value="vichada">Vichada</option>
+        </select>
 
     </div>
     </div>
 
     <!-- Text input-->
-    <div class="form-group">
-    <label class="col-md-4 control-label" for="textinput">Municipio</label>
+     <div class="form-group">
+      <label class="col-md-4 control-label">Municipio</label>
     <div class="col-md-4">
-    <input id="municipio" name="municipio" type="text" placeholder="Municipio" class="form-control input-md" value="<?= $escenario->municipio?>" required>
+    <select id="municipio" name="municipio" class="form-control input-md">
+         <option><?= $escenario->municipio?></option>
+    </select>
     </div>
     </div>
-
+    
     <!-- Text input-->
     <div class="form-group">
         <label class="col-md-4 control-label" for="textinput">Dirección</label>

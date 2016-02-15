@@ -1,3 +1,5 @@
+
+
 <div class="box box-primary">
         <div class="text-center">
               <h1><?= h($escenario->nombre) ?></h1>
